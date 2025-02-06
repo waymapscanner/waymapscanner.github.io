@@ -1,1 +1,1 @@
-# waymap-scanner.github.io
+# waymap-scanner docs

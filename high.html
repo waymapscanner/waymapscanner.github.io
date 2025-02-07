@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Waymap : A Simple Web Application Vulnerability Scanner</title>
+    <meta name="google-site-verification" content="some-verification-code"/>
+    <link href="http://fonts.googleapis.com/css?family=Cantarell" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        body {
+            background-color: rgb(152, 152, 206);
+            font-family: cantarell, Arial, Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            height: 100%;
+            margin: 0;
+            text-align: justify;
+        }
+        h1 {
+            font-family: 'Rokkitt', Verdana, sans-serif;
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 0;
+        }
+        h2 {
+            font-family: 'Rokkitt', Verdana, sans-serif;
+            text-align: left;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 0;
+        }
+        a {color: #666; text-decoration:underline}
+        a:visited {color: #666; text-decoration:underline}
+        a:hover {color: #000; }
+        .wrapper {
+            width: 850px;
+            padding-top: 5px;
+            margin: auto;
+        }
+        #header {
+            position: fixed;
+            top: 0;
+            height: 130px;
+            width: 100%;
+            margin: 0px;
+            border-bottom: 1px solid #DDD;
+            background-color: rgba(49, 44, 82, 0.8);
+            -webkit-box-shadow:  0px 0px 7px 3px rgba(0, 0, 0, 0.2);
+            box-shadow:  0px 0px 7px 3px rgba(0, 0, 0, 0.2);
+            font-family: 'Rokkitt', Verdana, sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            z-index: 2;
+        }
+        #gradient {
+            position: fixed;
+            top: 100px;
+            height: 100px;
+            width: 100%;
+            background-image: url('gradient.png');
+            margin:0;
+            left: 0;
+        }
+        #content {
+            padding-top: 170px;
+            width: 830px;
+            margin-top: 0;
+            margin-left:auto;
+            margin-right: auto;
+        }
+        pre {
+            font-size: 12px;
+        }
+        #linediv {
+            width: 100%;
+            border-top: 1px solid #DDD;
+        }
+        .fleft {
+            float: left;
+            margin-right: 10px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .fright {
+            float: right;
+            margin-left: 10px;
+        }
+        .clear {
+            clear: both;
+        }
+
+        .profile-high {
+            background-color: #ff0303; 
+            color: white;
+            }
+
+        .profile-high:hover {
+            background-color: #5751c7; 
+        }
+
+        .profile-critical {
+            background-color: #040e2e; 
+            color: white;
+        }
+
+        .profile-critical:hover {
+            background-color: #9373f3;
+}
+
+
+        #logo {
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+        #footer {
+            padding: 5px;
+            color: rgb(29, 47, 55);
+            background-color: rgba(49, 44, 82, 0.8);
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #news {
+            display: block;
+            border: 2px solid #555;
+            font-size: 12px;
+            text-align: center;
+            padding: 2px;
+            margin: 2px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <a href="https://github.com/TrixSec/waymap/releases"><img class="fleft" src="images/download_90.png" alt="Download"/></a>
+        <div class="fleft">
+            <p>Download Waymap<br/>
+                Owner/Developer: Trix Cyrus<br/>
+                Copyright = Copyright © 2024-2025 Trixsec Org<br/>
+                Current stable version: 6.1.8<br/>
+
+        </div>
+    </div>
+</div>
+<div id="gradient"></div>
+<div id="content">
+    <div id="logo"><img src="images/waymap.jpg" alt="Waymap Logo"/></div>
+    <br/>
+    <h1>Waymap Scanner Profile : High</h1><br/><br/><br/><br/><br/><br/>
+    <p>Profile high-risk refers to vulnerability related to high severity ; CVSS v3 score 7.0-8.9</p>
+    <p>Currently This Profile Supports Only "CVE" Vuln Checking And CMS: WORDPRESS AND DRUPAL </p>
+
+    <div class="clear"></div>
+    <h3>For more information about the cve data checkout the CVE info Markdown File <a href="https://github.com/TrixSec/waymap/blob/main/doc/CVEVULN.md">here</a>.</h3>
+
+
+
+    <p>For more detailed information, visit the <a href="https://github.com/waymap-scanner/waymap/blob/master/README.md">README</a> file.</p>
+
+    <h2>Get in Touch</h2>
+    <p>If you have questions or feedback, feel free to reach out on GitHub or join our <a href="https://github.com/TrixSec/waymap">Waymap repository</a>.</p>
+</div>
+
+<div id="footer">
+    <div class="wrapper">
+        <p>Copyright © 2024-2025 Trixsec Org</p>
+        <div class="footer-right">
+            <img src="https://profile-counter.glitch.me/waymap-docs/count.svg" alt="Page Views" class="page-view-img">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Waymap : A Simple Web Application Vulnerability Scanner</title>
+    <meta name="google-site-verification" content="some-verification-code"/>
+    <link href="http://fonts.googleapis.com/css?family=Cantarell" rel="stylesheet" type="text/css"/>
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        body {
+            background-color: rgb(152, 152, 206);
+            font-family: cantarell, Arial, Verdana, Geneva, sans-serif;
+            font-size: 16px;
+            height: 100%;
+            margin: 0;
+            text-align: justify;
+        }
+        h1 {
+            font-family: 'Rokkitt', Verdana, sans-serif;
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 0;
+        }
+        h2 {
+            font-family: 'Rokkitt', Verdana, sans-serif;
+            text-align: left;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 0;
+        }
+        a {color: #666; text-decoration:underline}
+        a:visited {color: #666; text-decoration:underline}
+        a:hover {color: #000; }
+        .wrapper {
+            width: 850px;
+            padding-top: 5px;
+            margin: auto;
+        }
+        #header {
+            position: fixed;
+            top: 0;
+            height: 130px;
+            width: 100%;
+            margin: 0px;
+            border-bottom: 1px solid #DDD;
+            background-color: rgba(49, 44, 82, 0.8);
+            -webkit-box-shadow:  0px 0px 7px 3px rgba(0, 0, 0, 0.2);
+            box-shadow:  0px 0px 7px 3px rgba(0, 0, 0, 0.2);
+            font-family: 'Rokkitt', Verdana, sans-serif;
+            font-weight: 400;
+            font-size: 20px;
+            z-index: 2;
+        }
+        #gradient {
+            position: fixed;
+            top: 100px;
+            height: 100px;
+            width: 100%;
+            background-image: url('gradient.png');
+            margin:0;
+            left: 0;
+        }
+        #content {
+            padding-top: 170px;
+            width: 830px;
+            margin-top: 0;
+            margin-left:auto;
+            margin-right: auto;
+        }
+        pre {
+            font-size: 12px;
+        }
+        #linediv {
+            width: 100%;
+            border-top: 1px solid #DDD;
+        }
+        .fleft {
+            float: left;
+            margin-right: 10px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .fright {
+            float: right;
+            margin-left: 10px;
+        }
+        .clear {
+            clear: both;
+        }
+
+        .profile-high {
+            background-color: #ff0303; 
+            color: white;
+            }
+
+        .profile-high:hover {
+            background-color: #5751c7; 
+        }
+
+        .profile-critical {
+            background-color: #040e2e; 
+            color: white;
+        }
+
+        .profile-critical:hover {
+            background-color: #9373f3;
+}
+
+
+        #logo {
+            float: left;
+            margin: 0;
+            padding: 0;
+        }
+        #footer {
+            padding: 5px;
+            color: rgb(29, 47, 55);
+            background-color: rgba(49, 44, 82, 0.8);
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #news {
+            display: block;
+            border: 2px solid #555;
+            font-size: 12px;
+            text-align: center;
+            padding: 2px;
+            margin: 2px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <div class="wrapper">
+        <a href="https://github.com/TrixSec/waymap/releases"><img class="fleft" src="images/download_90.png" alt="Download"/></a>
+        <div class="fleft">
+            <p>Download Waymap<br/>
+                Owner/Developer: Trix Cyrus<br/>
+                Copyright = Copyright © 2024-2025 Trixsec Org<br/>
+                Current stable version: 6.1.8<br/>
+
+        </div>
+    </div>
+</div>
+<div id="gradient"></div>
+<div id="content">
+    <div id="logo"><img src="images/waymap.jpg" alt="Waymap Logo"/></div>
+    <br/>
+    <h1>Waymap Changelog</h1><br/><br/><br/><br/><br/><br/>
+
+
+    <h4>v1.0.3</h4>
+    <ul>
+        <li>Features: SQL Injection Scanner</li>
+        <li>Command Injection Scanner</li>
+        <li>Web Crawler</li>
+    </ul>
+    
+    <h4>v1.0.4</h4>
+    <ul>
+        <li>Updated crawler to crawl URLs within the target domain boundary and handle target URL redirection</li>
+        <li>Added auto-update for scanner</li>
+    </ul>
+    
+    <h4>v1.0.5</h4>
+    <ul>
+        <li>Fixed minor bugs (reclone the repo if you're using v1.0.4).</li>
+    </ul>
+    
+    <h4>v1.0.6</h4>
+    <ul>
+        <li>Enhanced the auto-update feature; no need to reclone the repo after this update.</li>
+        <li>Please reclone if using v1.0.5.</li>
+    </ul>
+    
+    <h4>v1.0.7</h4>
+    <ul>
+        <li>Fixed minor bugs.</li>
+        <li>Added support for scanning multiple URLs using <code>--multi-target {targetfilename}.txt</code> (ensure the file has one URL per line).</li>
+        <li>Auto-update enabled; no need to reclone unless on version v1.0.5 or older.</li>
+    </ul>
+    
+    <h4>v1.0.8</h4>
+    <ul>
+        <li>Added concurrency to utilize more CPU threads, speeding up SQL injection scans.</li>
+        <li>Improved stability.</li>
+        <li>Added logging functionality.</li>
+    </ul>
+    
+    <h4>v1.0.9</h4>
+    <ul>
+        <li>Minor bug fix.</li>
+    </ul>
+    
+    <h4>v1.1.0</h4>
+    <ul>
+        <li>Added a new scan type: Server Side Template Injection (<code>--scan ssti</code>).</li>
+        <li>Now you can run all scan types in one command using <code>--scan all</code>.</li>
+        <li>Added threading in SSTI (Server Side Template Injection).</li>
+    </ul>
+    
+    <h4>v1.1.1</h4>
+    <ul>
+        <li>Fixed SSTI exiting error.</li>
+    </ul>
+    
+    <h4>v1.2.1</h4>
+    <ul>
+        <li>Added new scanning module: XSS (Cross-Site Scripting) <code>--scan xss</code>.</li>
+        <li>Added XSS filter bypass payload testing.</li>
+        <li>Added threading in XSS testing.</li>
+        <li>Added new scanning module: LFI (Local File Inclusion) <code>--scan lfi</code>.</li>
+        <li>Added threading in LFI testing.</li>
+    </ul>
+    
+    <h4>v1.3.1</h4>
+    <ul>
+        <li>Added new scanning module: Open Redirect <code>--scan open-redirect</code>.</li>
+        <li>Added custom thread count in Open Redirect testing.</li>
+        <li>Fixed minor bugs.</li>
+    </ul>
+    
+    <h4>v2.4.1</h4>
+    <ul>
+        <li>Added new scanning module: CRLF Injection <code>--scan crlf</code> (Carriage Return and Line Feed).</li>
+        <li>Added custom threading count in CRLF scans.</li>
+        <li>Improved Waymap Crawler to crawl at any depth.</li>
+        <li>Added custom threading in crawling.</li>
+        <li>Added new User-Agents in <code>ua.txt</code>.</li>
+        <li>Fixed major bugs/errors.</li>
+    </ul>
+    
+    <h4>v2.5.2</h4>
+    <ul>
+        <li>Added new scan type: CORS Misconfiguration <code>--scan cors</code> (Cross-Origin Resource Sharing).</li>
+        <li>Added threading in CORS scan.</li>
+        <li>Fixed CRLF bug.</li>
+        <li>Fixed minor bugs.</li>
+    </ul>
+    
+    <h4>v2.5.3</h4>
+    <ul>
+        <li>Fixed scanning exiting error.</li>
+    </ul>
+    
+    <h4>v2.5.4</h4>
+    <ul>
+        <li>Fixed bug in Open-Redirect, CRLF, CORS.</li>
+    </ul>
+    
+    <h4>v2.5.5</h4>
+    <ul>
+        <li>Updated SQLi module to handle multiple parameters.</li>
+        <li>Added new argument <code>--random-agent</code>: Waymap will use a random user agent only when this argument is used.</li>
+        <li>Updated Waymap to use headers during scans to make requests look more legitimate and reduce the chance of being flagged or blocked.</li>
+    </ul>
+    
+    <h4>v2.5.6</h4>
+    <ul>
+        <li>Bugs fixed.</li>
+        <li>No SSL verify update.</li>
+        <li>New updates coming soon.</li>
+    </ul>
+    
+    <h4>v3.5.6</h4>
+    <ul>
+        <li>New Web Crawler (v2.5) with extended scope.</li>
+        <li>Fixed injection module testing errors.</li>
+    </ul>
+    
+    <h4>v3.6.6</h4>
+    <ul>
+        <li>Improved v3 Crawler (Waymap Crawler is now better than SQLMap Crawler).</li>
+        <li>Added new arguments: <code>--url/-u</code> and <code>--multi-url/-mu</code> to scan URLs without crawling them.</li>
+        <li>Bug fixes.</li>
+    </ul>
+    
+    <h4>v3.7.6</h4>
+    <ul>
+        <li>Added new argument <code>--threads/-T</code> (no more prompting for threads).</li>
+        <li>Optimized Waymap.</li>
+    </ul>
+    
+    <h4>v3.7.7</h4>
+    <ul>
+        <li>Fixed bug/error.</li>
+    </ul>
+    
+    <h4>v3.8.7</h4>
+    <ul>
+        <li>Added new argument <code>--no-prompt/-np</code> (it will not prompt for any input during scan, default input = 'n').</li>
+        <li>Bug fixes.</li>
+    </ul>
+    
+    <h3>v4.8.7</h3>
+    <ul>
+        <li>Big update in Waymap.</li>
+        <li>Added new scan profiles: <code>--scan critical-risk</code> and <code>--scan high-risk</code>.</li>
+        <li>These profiles will use CVE scanners and exploits added in Waymap according to the severity from NVD.</li>
+        <li>Currently, there are 32 CVE exploits and scanners added:</li>
+        <ul>
+            <li>WordPress: 19 CVEs</li>
+            <li>Drupal: 4 CVEs</li>
+            <li>Joomla: 7 CVEs</li>
+            <li>Generic/Others: 2 CVEs</li>
+        </ul>
+    </ul>
+    
+    <h3>v4.9.0</h3>
+    <ul>
+        <li>Added new arguments to handle profiles:</li>
+        <ul>
+            <li><code>--profile critical-risk</code> / <code>--profile high-risk</code></li>
+            <li><code>--profileurl https://example.com/</code></li>
+        </ul>
+        <li>Fixed import errors.</li>
+        <li>Optimized Waymap.</li>
+    </ul>
+    
+    <h3>v4.9.1</h3>
+    <ul>
+        <li>Made Waymap more stable for faster processing.</li>
+    </ul>
+    
+    <h3>v5.0.1</h3>
+    <ul>
+        <li>Added <code>--no-prompt</code> and <code>--threads</code> usage in crawling.</li>
+        <li>Bug fixes.</li>
+    </ul>
+    
+    <h3>v5.1.1</h3>
+    <ul>
+        <li>Added new argument <code>--check-updates</code>: when used, it will check for the latest version of Waymap and automatically update it.</li>
+        <li>No more forced updates.</li>
+    </ul>
+    
+    <h3>v5.2.1</h3>
+    <ul>
+        <li>New SQL Injection scanning module.</li>
+        <li>High accuracy and fewer false positives.</li>
+        <li>Access it using: <code>--scan sqli</code>.</li>
+    </ul>
+    
+    <h4>v5.3.1</h4>
+    <ul>
+        <li>Added Boolean-Based SQLi Testing</li>
+        <li>High accuracy but may give false positives</li>
+        <li>Access it using: <code>--scan sqli</code></li>
+    </ul>
+    
+    <h4>v5.4.1</h4>
+    <ul>
+        <li>Updated CVE testing logic for Profile-Critical CMS (WordPress)</li>
+        <li>Improved detection accuracy</li>
+    </ul>
+    
+    <h4>v5.5.1</h4>
+    <ul>
+        <li>Added 45 new CVE detection logics</li>
+        <li>11 Critical-Risk CVEs</li>
+        <li>34 High-Risk CVEs</li>
+        <li>For CVE details, see <code>CVEVULN.md</code></li>
+    </ul>
+    
+    <h4>v5.6.1</h4>
+    <ul>
+        <li>Added 19 new CVE detection logics</li>
+        <li>8 Critical-Risk CVEs</li>
+        <li>11 High-Risk CVEs</li>
+        <li>For CVE details, see <code>CVEVULN.md</code></li>
+    </ul>
+    
+    <h4>v5.7.1</h4>
+    <ul>
+        <li>Removed <code>--random-agent</code> (Waymap now uses different headers for each request by default)</li>
+        <li>Added IP Spoofing for more anonymity</li>
+        <li>Updated WP plugin checking logic (High-Profile & Critical-Profile)</li>
+        <li>Minor bug fixes</li>
+    </ul>
+    
+    <h4>v5.7.2</h4>
+    <ul>
+        <li>Added new logic to update Waymap</li>
+    </ul>
+    
+    <h4>v5.8.2</h4>
+    <ul>
+        <li>Removed <code>--profileurl/-pu</code> argument</li>
+        <li>New usage: Use <code>--target</code> with <code>--profile</code> instead</li>
+        <li>Removed <code>--url</code> and <code>--multi-url/-mu</code> arguments</li>
+        <li>Added 74 Critical Severity CVEs</li>
+        <li>For CVE details, see <code>CVEVULN.md</code></li>
+    </ul>
+    
+    <h4>v5.9.4</h4>
+    <ul>
+        <li>Removed old error-based SQL injection method</li>
+        <li>New method available via <code>--scan sqli</code></li>
+        <li>Updated open redirect vulnerability testing</li>
+        <li>Updated crawler to v4</li>
+        <li>Added 249 high-risk CVEs</li>
+        <li>Total CVEs count: 390</li>
+    </ul>
+    
+    <h4>v6.0.4</h4>
+    <ul>
+        <li>Added new scan profile: <code>deepscan</code></li>
+        <li>Features in Deepscan:</li>
+        <ul>
+            <li>Scans for 25+ header vulnerabilities</li>
+            <li>Massive directory fuzzing</li>
+            <li>Finds backup files on the server</li>
+        </ul>
+        <li>Fixed CORS scan type error</li>
+        <li>Minor bug fixes</li>
+    </ul>
+    
+    <h4>v6.0.5</h4>
+    <ul>
+        <li>Fixed issue regarding Waymap updates</li>
+    </ul>
+    
+    <h4>v6.0.6</h4>
+    <ul>
+        <li>Minor code fixes</li>
+    </ul>
+    
+    <h4>v6.1.6</h4>
+    <ul>
+        <li>Added new module in Deepscan profile: Vulnerable JavaScript Library & Files Scanner</li>
+        <li>Added WAF/IPS detector (Detects 160+ types of WAFs)</li>
+        <li>Usage: <code>--check-waf</code> or <code>--waf https://example.com</code></li>
+    </ul>
+    
+    <h4>v6.1.7</h4>
+    <ul>
+        <li>Fixed missing XSS payload file error</li>
+        <li>Minor bug fixes</li>
+    </ul>
+    
+    <h4>v6.1.8</h4>
+    <ul>
+        <li>Updated SQL injection exiting logic</li>
+        <li>Minor bug fixes</li>
+    </ul>
+    
+
+    <p>For more detailed information, visit the <a href="https://github.com/waymap-scanner/waymap/blob/master/README.md">README</a> file.</p>
+
+    <h2>Get in Touch</h2>
+    <p>If you have questions or feedback, feel free to reach out on GitHub or join our <a href="https://github.com/TrixSec/waymap">Waymap repository</a>.</p>
+</div>
+
+<div id="footer">
+    <div class="wrapper">
+        <p>Copyright © 2024-2025 Trixsec Org</p>
+        <div class="footer-right">
+            <img src="https://profile-counter.glitch.me/waymap-docs/count.svg" alt="Page Views" class="page-view-img">
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
